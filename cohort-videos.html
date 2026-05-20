@@ -83,6 +83,7 @@
             box-shadow: 0 4px 12px rgba(77, 143, 70, 0.1);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             border-top: 4px solid #a5cf4b;
+            cursor: pointer;
         }
 
         .video-card:hover {
@@ -92,23 +93,25 @@
         }
 
         .video-placeholder {
-            background: linear-gradient(135deg, #e8f5e9 0%, #f1f8e9 100%);
-            height: 220px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
             position: relative;
+            width: 100%;
+            height: 220px;
             overflow: hidden;
+            background: #e8f5e9;
         }
 
-        .video-placeholder img {
+        .video-thumbnail {
             width: 100%;
             height: 100%;
             object-fit: cover;
+            display: block;
         }
 
         .play-icon {
             position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
             width: 60px;
             height: 60px;
             background: rgba(77, 143, 70, 0.9);
@@ -118,6 +121,7 @@
             justify-content: center;
             cursor: pointer;
             transition: background 0.3s ease;
+            z-index: 2;
         }
 
         .video-placeholder:hover .play-icon {
@@ -327,13 +331,13 @@
 </head>
 <body>
     <header>
-        <h1>🎓 Cohort Program Video Resource Center</h1>
+        <h1>Cohort Program Video Resource Center</h1>
         <p>Learn everything you need to know about joining our cohort program. Watch our comprehensive video guides to understand the process, expectations, and success strategies.</p>
     </header>
 
     <div class="container">
         <div class="intro-section">
-            <h2>Welcome to Your Learning Journey!</h2>
+            <h2>Welcome to Your IAQ Cohort Program Journey!</h2>
             <div class="accent-line"></div>
             <p>Whether you're exploring the cohort program for the first time or ready to join, these videos will guide you through every step of the process. From understanding what to expect to learning from districts that have already joined, you'll find all the information you need to make an informed decision.</p>
         </div>
@@ -342,8 +346,9 @@
         <div class="category-section">
             <h2 class="category-title">📌 Getting Started</h2>
             <div class="video-grid">
-                <div class="video-card">
-                    <div class="video-placeholder" onclick="openModal('video1')">
+                <div class="video-card" onclick="openModal('video1')">
+                    <div class="video-placeholder">
+                        <img class="video-thumbnail" src="https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg" alt="What to Expect in the Cohort Program">
                         <div class="play-icon"></div>
                     </div>
                     <div class="video-content">
@@ -357,8 +362,9 @@
                     </div>
                 </div>
 
-                <div class="video-card">
-                    <div class="video-placeholder" onclick="openModal('video2')">
+                <div class="video-card" onclick="openModal('video2')">
+                    <div class="video-placeholder">
+                        <img class="video-thumbnail" src="https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg" alt="Cohort Program Benefits">
                         <div class="play-icon"></div>
                     </div>
                     <div class="video-content">
@@ -372,8 +378,9 @@
                     </div>
                 </div>
 
-                <div class="video-card">
-                    <div class="video-placeholder" onclick="openModal('video3')">
+                <div class="video-card" onclick="openModal('video3')">
+                    <div class="video-placeholder">
+                        <img class="video-thumbnail" src="https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg" alt="How to Apply">
                         <div class="play-icon"></div>
                     </div>
                     <div class="video-content">
@@ -393,8 +400,9 @@
         <div class="category-section">
             <h2 class="category-title">🔍 Understanding the Program</h2>
             <div class="video-grid">
-                <div class="video-card">
-                    <div class="video-placeholder" onclick="openModal('video4')">
+                <div class="video-card" onclick="openModal('video4')">
+                    <div class="video-placeholder">
+                        <img class="video-thumbnail" src="https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg" alt="What is an IAQ Walkthrough?">
                         <div class="play-icon"></div>
                     </div>
                     <div class="video-content">
@@ -408,8 +416,9 @@
                     </div>
                 </div>
 
-                <div class="video-card">
-                    <div class="video-placeholder" onclick="openModal('video5')">
+                <div class="video-card" onclick="openModal('video5')">
+                    <div class="video-placeholder">
+                        <img class="video-thumbnail" src="https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg" alt="Your District's First Walkthrough">
                         <div class="play-icon"></div>
                     </div>
                     <div class="video-content">
@@ -423,8 +432,9 @@
                     </div>
                 </div>
 
-                <div class="video-card">
-                    <div class="video-placeholder" onclick="openModal('video6')">
+                <div class="video-card" onclick="openModal('video6')">
+                    <div class="video-placeholder">
+                        <img class="video-thumbnail" src="https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg" alt="Understanding IAQ Assessment Results">
                         <div class="play-icon"></div>
                     </div>
                     <div class="video-content">
@@ -444,14 +454,15 @@
         <div class="category-section">
             <h2 class="category-title">💡 Advice for New Districts</h2>
             <div class="video-grid">
-                <div class="video-card">
-                    <div class="video-placeholder" onclick="openModal('video7')">
+                <div class="video-card" onclick="openModal('video7')">
+                    <div class="video-placeholder">
+                        <img class="video-thumbnail" src="https://img.youtube.com/vi/2f9Sii4jDCE/maxresdefault.jpg" alt="Advice For Districts Starting the Program">
                         <div class="play-icon"></div>
                     </div>
                     <div class="video-content">
-                        <h3>Building Your Team & Getting Buy-In</h3>
-                        <div class="duration">11 minutes</div>
-                        <p>Strategies for assembling the right team, gaining administrative support, and building enthusiasm across your district for the program.</p>
+                        <h3>Advice For Districts Starting the Program</h3>
+                        <div class="duration">1 minute</div>
+                        <p>Assigned this project out of the blue? Hear from Standard School District (Cohort 1) about their experience in the program and how they successfully tackled this program.</p>
                         <div class="tags">
                             <span class="tag">Leadership</span>
                             <span class="tag">Strategy</span>
@@ -459,8 +470,9 @@
                     </div>
                 </div>
 
-                <div class="video-card">
-                    <div class="video-placeholder" onclick="openModal('video8')">
+                <div class="video-card" onclick="openModal('video8')">
+                    <div class="video-placeholder">
+                        <img class="video-thumbnail" src="https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg" alt="Budgeting & Resource Planning">
                         <div class="play-icon"></div>
                     </div>
                     <div class="video-content">
@@ -474,8 +486,9 @@
                     </div>
                 </div>
 
-                <div class="video-card">
-                    <div class="video-placeholder" onclick="openModal('video9')">
+                <div class="video-card" onclick="openModal('video9')">
+                    <div class="video-placeholder">
+                        <img class="video-thumbnail" src="https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg" alt="Timeline & Expectations: Year One">
                         <div class="play-icon"></div>
                     </div>
                     <div class="video-content">
@@ -489,8 +502,9 @@
                     </div>
                 </div>
 
-                <div class="video-card">
-                    <div class="video-placeholder" onclick="openModal('video10')">
+                <div class="video-card" onclick="openModal('video10')">
+                    <div class="video-placeholder">
+                        <img class="video-thumbnail" src="https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg" alt="Common Challenges & How to Overcome Them">
                         <div class="play-icon"></div>
                     </div>
                     <div class="video-content">
@@ -504,8 +518,9 @@
                     </div>
                 </div>
 
-                <div class="video-card">
-                    <div class="video-placeholder" onclick="openModal('video11')">
+                <div class="video-card" onclick="openModal('video11')">
+                    <div class="video-placeholder">
+                        <img class="video-thumbnail" src="https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg" alt="Questions to Ask Before Joining">
                         <div class="play-icon"></div>
                     </div>
                     <div class="video-content">
@@ -519,8 +534,9 @@
                     </div>
                 </div>
 
-                <div class="video-card">
-                    <div class="video-placeholder" onclick="openModal('video12')">
+                <div class="video-card" onclick="openModal('video12')">
+                    <div class="video-placeholder">
+                        <img class="video-thumbnail" src="https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg" alt="Communicating with Stakeholders">
                         <div class="play-icon"></div>
                     </div>
                     <div class="video-content">
@@ -540,14 +556,15 @@
         <div class="category-section">
             <h2 class="category-title">🌟 District Success Stories</h2>
             <div class="video-grid">
-                <div class="video-card">
-                    <div class="video-placeholder" onclick="openModal('video13')">
+                <div class="video-card" onclick="openModal('video13')">
+                    <div class="video-placeholder">
+                        <img class="video-thumbnail" src="https://img.youtube.com/vi/bu3535vD23A/maxresdefault.jpg" alt="Cohort 1 District Spotlight: Standard School District">
                         <div class="play-icon"></div>
                     </div>
                     <div class="video-content">
-                        <h3>Cohort 1 District Spotlight: Results & Impact</h3>
-                        <div class="duration">15 minutes</div>
-                        <p>Hear directly from Cohort 1 districts about their journey, key wins, challenges overcome, and measurable improvements in their schools.</p>
+                        <h3>Cohort 1 District Spotlight: Standard School District</h3>
+                        <div class="duration">2 minutes</div>
+                        <p>Hear more about Standard School District, based in Bakersfield, California and the unique IAQ Challenges they face.</p>
                         <div class="tags">
                             <span class="tag">Cohort 1</span>
                             <span class="tag">Success</span>
@@ -555,8 +572,9 @@
                     </div>
                 </div>
 
-                <div class="video-card">
-                    <div class="video-placeholder" onclick="openModal('video14')">
+                <div class="video-card" onclick="openModal('video14')">
+                    <div class="video-placeholder">
+                        <img class="video-thumbnail" src="https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg" alt="Lessons Learned from Our First Cohort">
                         <div class="play-icon"></div>
                     </div>
                     <div class="video-content">
@@ -570,8 +588,9 @@
                     </div>
                 </div>
 
-                <div class="video-card">
-                    <div class="video-placeholder" onclick="openModal('video15')">
+                <div class="video-card" onclick="openModal('video15')">
+                    <div class="video-placeholder">
+                        <img class="video-thumbnail" src="https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg" alt="Before & After: Transformation Stories">
                         <div class="play-icon"></div>
                     </div>
                     <div class="video-content">
@@ -591,12 +610,13 @@
         <div class="category-section">
             <h2 class="category-title">🛠️ Implementation Support & Resources</h2>
             <div class="video-grid">
-                <div class="video-card">
-                    <div class="video-placeholder" onclick="openModal('video16')">
+                <div class="video-card" onclick="openModal('video16')">
+                    <div class="video-placeholder">
+                        <img class="video-thumbnail" src="https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg" alt="Creating Your IAQ Management Plan">
                         <div class="play-icon"></div>
                     </div>
                     <div class="video-content">
-                        <h3>Creating Your Action Plan</h3>
+                        <h3>Creating Your IAQ Management Plan</h3>
                         <div class="duration">11 minutes</div>
                         <p>Step-by-step guidance on developing a strategic action plan based on assessment results with realistic timelines and resource allocation.</p>
                         <div class="tags">
@@ -606,8 +626,9 @@
                     </div>
                 </div>
 
-                <div class="video-card">
-                    <div class="video-placeholder" onclick="openModal('video17')">
+                <div class="video-card" onclick="openModal('video17')">
+                    <div class="video-placeholder">
+                        <img class="video-thumbnail" src="https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg" alt="Available Support & Resources">
                         <div class="play-icon"></div>
                     </div>
                     <div class="video-content">
@@ -621,8 +642,9 @@
                     </div>
                 </div>
 
-                <div class="video-card">
-                    <div class="video-placeholder" onclick="openModal('video18')">
+                <div class="video-card" onclick="openModal('video18')">
+                    <div class="video-placeholder">
+                        <img class="video-thumbnail" src="https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg" alt="Tracking Progress & Measuring Success">
                         <div class="play-icon"></div>
                     </div>
                     <div class="video-content">
@@ -656,25 +678,24 @@
     </div>
 
     <footer>
-        <p>&copy; 2024 Cohort Program. Dedicated to improving indoor air quality and student health in schools.</p>
     </footer>
 
     <script>
-        // Video URLs - Replace these with your actual YouTube or Vimeo video URLs
+        // Video URLs - Use /embed/ for regular videos and convert shorts to embed format
         const videoData = {
-            video1: 'https://www.youtube.com/embed/dQw4w9WgXcQ', // Replace with actual video
+            video1: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
             video2: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
             video3: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
             video4: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
             video5: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
             video6: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
-            video7: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
+            video7: 'https://www.youtube.com/embed/2f9Sii4jDCE', // Converted from shorts
             video8: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
             video9: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
             video10: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
             video11: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
             video12: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
-            video13: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
+            video13: 'https://www.youtube.com/embed/bu3535vD23A', // Converted from shorts
             video14: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
             video15: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
             video16: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
