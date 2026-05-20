@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cohort Program - Video Resource Center</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #000000;
+            background-color: #f8f9fa;
+        }
+
+        header {
+            background: linear-gradient(135deg, #4d8f46 0%, #a5cf4b 100%);
+            color: #ffffff;
+            padding: 60px 20px;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        header p {
+            font-size: 1.1em;
+            opacity: 0.95;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .intro-section {
+            background: #ffffff;
+            padding: 40px;
+            border-radius: 10px;
+            margin-bottom: 50px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            text-align: center;
+            border-left: 5px solid #4d8f46;
+        }
+
+        .intro-section h2 {
+            color: #4d8f46;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+        }
+
+        .intro-section p {
+            font-size: 1.05em;
+            color: #000000;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .video-card {
+            background: #ffffff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(77, 143, 70, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-top: 4px solid #a5cf4b;
+        }
+
+        .video-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(77, 143, 70, 0.2);
+            border-top: 4px solid #4d8f46;
+        }
+
+        .video-placeholder {
+            background: linear-gradient(135deg, #e8f5e9 0%, #f1f8e9 100%);
+            height: 220px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .video-placeholder img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .play-icon {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            background: rgba(77, 143, 70, 0.9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .video-placeholder:hover .play-icon {
+            background: #4d8f46;
+        }
+
+        .play-icon::after {
+            content: '▶';
+            color: #ffffff;
+            font-size: 24px;
+            margin-left: 4px;
+        }
+
+        .video-content {
+            padding: 25px;
+        }
+
+        .video-content h3 {
+            color: #4d8f46;
+            margin-bottom: 12px;
+            font-size: 1.3em;
+        }
+
+        .video-content .duration {
+            color: #a5cf4b;
+            font-size: 0.9em;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .video-content p {
+            color: #000000;
+            font-size: 0.95em;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .video-content .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .tag {
+            display: inline-block;
+            background: #e8f5e9;
+            color: #4d8f46;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8em;
+            font-weight: 600;
+            border: 1px solid #a5cf4b;
+        }
+
+        .category-section {
+            margin-bottom: 50px;
+        }
+
+        .category-title {
+            font-size: 1.8em;
+            color: #4d8f46;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #a5cf4b;
+        }
+
+        .cta-section {
+            background: linear-gradient(135deg, #4d8f46 0%, #a5cf4b 100%);
+            color: #ffffff;
+            padding: 50px;
+            border-radius: 10px;
+            text-align: center;
+            margin-top: 50px;
+            box-shadow: 0 4px 15px rgba(77, 143, 70, 0.3);
+        }
+
+        .cta-section h2 {
+            margin-bottom: 20px;
+            font-size: 1.8em;
+        }
+
+        .cta-section p {
+            margin-bottom: 30px;
+            font-size: 1.05em;
+            opacity: 0.98;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: #ffffff;
+            color: #4d8f46;
+            padding: 15px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.05em;
+            transition: background 0.3s ease, transform 0.2s ease, color 0.3s ease;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+
+        .cta-button:hover {
+            background: #a5cf4b;
+            color: #ffffff;
+            transform: scale(1.05);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+        }
+
+        footer {
+            background: #000000;
+            color: #ffffff;
+            text-align: center;
+            padding: 30px 20px;
+            margin-top: 50px;
+        }
+
+        footer p {
+            opacity: 0.9;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: #ffffff;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 800px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            width: 35px;
+            height: 35px;
+            background: rgba(77, 143, 70, 0.8);
+            border: none;
+            border-radius: 50%;
+            color: #ffffff;
+            font-size: 24px;
+            cursor: pointer;
+            z-index: 10;
+            transition: background 0.2s;
+        }
+
+        .modal-close:hover {
+            background: #4d8f46;
+        }
+
+        .modal-video {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+        }
+
+        .accent-line {
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, #4d8f46 0%, #a5cf4b 100%);
+            margin: 20px auto;
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 1.8em;
+            }
+
+            header p {
+                font-size: 1em;
+            }
+
+            .video-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .category-title {
+                font-size: 1.4em;
+            }
+
+            .cta-section {
+                padding: 30px 20px;
+            }
+
+            .cta-section h2 {
+                font-size: 1.4em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>🎓 Cohort Program Video Resource Center</h1>
+        <p>Learn everything you need to know about joining our cohort program. Watch our comprehensive video guides to understand the process, expectations, and success strategies.</p>
+    </header>
+
+    <div class="container">
+        <div class="intro-section">
+            <h2>Welcome to Your Learning Journey!</h2>
+            <div class="accent-line"></div>
+            <p>Whether you're exploring the cohort program for the first time or ready to join, these videos will guide you through every step of the process. From understanding what to expect to learning from districts that have already joined, you'll find all the information you need to make an informed decision.</p>
+        </div>
+
+        <!-- Getting Started Section -->
+        <div class="category-section">
+            <h2 class="category-title">📌 Getting Started</h2>
+            <div class="video-grid">
+                <div class="video-card">
+                    <div class="video-placeholder" onclick="openModal('video1')">
+                        <div class="play-icon"></div>
+                    </div>
+                    <div class="video-content">
+                        <h3>What to Expect in the Cohort Program</h3>
+                        <div class="duration">8 minutes</div>
+                        <p>A comprehensive overview of the cohort program structure, timeline, and what districts can expect throughout their participation journey.</p>
+                        <div class="tags">
+                            <span class="tag">Overview</span>
+                            <span class="tag">Beginner</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="video-card">
+                    <div class="video-placeholder" onclick="openModal('video2')">
+                        <div class="play-icon"></div>
+                    </div>
+                    <div class="video-content">
+                        <h3>Cohort Program Benefits</h3>
+                        <div class="duration">6 minutes</div>
+                        <p>Discover the key benefits districts receive, including support, resources, professional development, and networking opportunities.</p>
+                        <div class="tags">
+                            <span class="tag">Benefits</span>
+                            <span class="tag">Advantage</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="video-card">
+                    <div class="video-placeholder" onclick="openModal('video3')">
+                        <div class="play-icon"></div>
+                    </div>
+                    <div class="video-content">
+                        <h3>How to Apply</h3>
+                        <div class="duration">5 minutes</div>
+                        <p>Step-by-step walkthrough of the application process, including requirements, documentation, and what happens after you submit your application.</p>
+                        <div class="tags">
+                            <span class="tag">Application</span>
+                            <span class="tag">Tutorial</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Understanding the Program Section -->
+        <div class="category-section">
+            <h2 class="category-title">🔍 Understanding the Program</h2>
+            <div class="video-grid">
+                <div class="video-card">
+                    <div class="video-placeholder" onclick="openModal('video4')">
+                        <div class="play-icon"></div>
+                    </div>
+                    <div class="video-content">
+                        <h3>What is an IAQ Walkthrough?</h3>
+                        <div class="duration">10 minutes</div>
+                        <p>Deep dive into the IAQ (Indoor Air Quality) walkthrough process, the tools used, and how it helps identify and address building concerns.</p>
+                        <div class="tags">
+                            <span class="tag">Core Process</span>
+                            <span class="tag">IAQ</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="video-card">
+                    <div class="video-placeholder" onclick="openModal('video5')">
+                        <div class="play-icon"></div>
+                    </div>
+                    <div class="video-content">
+                        <h3>Your District's First Walkthrough</h3>
+                        <div class="duration">12 minutes</div>
+                        <p>What happens during your first IAQ walkthrough, how to prepare, what to expect on the day, and how results are shared with your team.</p>
+                        <div class="tags">
+                            <span class="tag">Walkthrough</span>
+                            <span class="tag">Process</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="video-card">
+                    <div class="video-placeholder" onclick="openModal('video6')">
+                        <div class="play-icon"></div>
+                    </div>
+                    <div class="video-content">
+                        <h3>Understanding IAQ Assessment Results</h3>
+                        <div class="duration">9 minutes</div>
+                        <p>How to interpret assessment results, understand action items, prioritize improvements, and develop your implementation roadmap.</p>
+                        <div class="tags">
+                            <span class="tag">Results</span>
+                            <span class="tag">Action Plan</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- For New Districts Section -->
+        <div class="category-section">
+            <h2 class="category-title">💡 Advice for New Districts</h2>
+            <div class="video-grid">
+                <div class="video-card">
+                    <div class="video-placeholder" onclick="openModal('video7')">
+                        <div class="play-icon"></div>
+                    </div>
+                    <div class="video-content">
+                        <h3>Building Your Team & Getting Buy-In</h3>
+                        <div class="duration">11 minutes</div>
+                        <p>Strategies for assembling the right team, gaining administrative support, and building enthusiasm across your district for the program.</p>
+                        <div class="tags">
+                            <span class="tag">Leadership</span>
+                            <span class="tag">Strategy</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="video-card">
+                    <div class="video-placeholder" onclick="openModal('video8')">
+                        <div class="play-icon"></div>
+                    </div>
+                    <div class="video-content">
+                        <h3>Budgeting & Resource Planning</h3>
+                        <div class="duration">9 minutes</div>
+                        <p>Financial planning, understanding program costs, available grants and support, and how to allocate resources for maximum impact.</p>
+                        <div class="tags">
+                            <span class="tag">Budget</span>
+                            <span class="tag">Planning</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="video-card">
+                    <div class="video-placeholder" onclick="openModal('video9')">
+                        <div class="play-icon"></div>
+                    </div>
+                    <div class="video-content">
+                        <h3>Timeline & Expectations: Year One</h3>
+                        <div class="duration">10 minutes</div>
+                        <p>What to expect during your first year in the cohort, key milestones, important dates, and how we'll support you through each phase.</p>
+                        <div class="tags">
+                            <span class="tag">Timeline</span>
+                            <span class="tag">Milestone</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="video-card">
+                    <div class="video-placeholder" onclick="openModal('video10')">
+                        <div class="play-icon"></div>
+                    </div>
+                    <div class="video-content">
+                        <h3>Common Challenges & How to Overcome Them</h3>
+                        <div class="duration">12 minutes</div>
+                        <p>Learn from lessons experienced by other districts. Explore common obstacles and proven strategies to successfully navigate them.</p>
+                        <div class="tags">
+                            <span class="tag">Challenge</span>
+                            <span class="tag">Solution</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="video-card">
+                    <div class="video-placeholder" onclick="openModal('video11')">
+                        <div class="play-icon"></div>
+                    </div>
+                    <div class="video-content">
+                        <h3>Questions to Ask Before Joining</h3>
+                        <div class="duration">7 minutes</div>
+                        <p>A practical checklist of essential questions to ask the program team before making your final decision to join.</p>
+                        <div class="tags">
+                            <span class="tag">Q&A</span>
+                            <span class="tag">Decision</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="video-card">
+                    <div class="video-placeholder" onclick="openModal('video12')">
+                        <div class="play-icon"></div>
+                    </div>
+                    <div class="video-content">
+                        <h3>Communicating with Stakeholders</h3>
+                        <div class="duration">8 minutes</div>
+                        <p>How to effectively communicate program goals, progress, and results to school boards, staff, parents, and community members.</p>
+                        <div class="tags">
+                            <span class="tag">Communication</span>
+                            <span class="tag">Stakeholder</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Success Stories Section -->
+        <div class="category-section">
+            <h2 class="category-title">🌟 District Success Stories</h2>
+            <div class="video-grid">
+                <div class="video-card">
+                    <div class="video-placeholder" onclick="openModal('video13')">
+                        <div class="play-icon"></div>
+                    </div>
+                    <div class="video-content">
+                        <h3>Cohort 1 District Spotlight: Results & Impact</h3>
+                        <div class="duration">15 minutes</div>
+                        <p>Hear directly from Cohort 1 districts about their journey, key wins, challenges overcome, and measurable improvements in their schools.</p>
+                        <div class="tags">
+                            <span class="tag">Cohort 1</span>
+                            <span class="tag">Success</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="video-card">
+                    <div class="video-placeholder" onclick="openModal('video14')">
+                        <div class="play-icon"></div>
+                    </div>
+                    <div class="video-content">
+                        <h3>Lessons Learned from Our First Cohort</h3>
+                        <div class="duration">13 minutes</div>
+                        <p>Key takeaways and practical insights from Cohort 1's experience that will help you succeed in your cohort participation.</p>
+                        <div class="tags">
+                            <span class="tag">Lessons</span>
+                            <span class="tag">Insights</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="video-card">
+                    <div class="video-placeholder" onclick="openModal('video15')">
+                        <div class="play-icon"></div>
+                    </div>
+                    <div class="video-content">
+                        <h3>Before & After: Transformation Stories</h3>
+                        <div class="duration">18 minutes</div>
+                        <p>Visual and narrative walk-throughs showing how schools transformed their environments and improved student health outcomes through the program.</p>
+                        <div class="tags">
+                            <span class="tag">Transformation</span>
+                            <span class="tag">Impact</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Implementation Support Section -->
+        <div class="category-section">
+            <h2 class="category-title">🛠️ Implementation Support & Resources</h2>
+            <div class="video-grid">
+                <div class="video-card">
+                    <div class="video-placeholder" onclick="openModal('video16')">
+                        <div class="play-icon"></div>
+                    </div>
+                    <div class="video-content">
+                        <h3>Creating Your Action Plan</h3>
+                        <div class="duration">11 minutes</div>
+                        <p>Step-by-step guidance on developing a strategic action plan based on assessment results with realistic timelines and resource allocation.</p>
+                        <div class="tags">
+                            <span class="tag">Planning</span>
+                            <span class="tag">Action</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="video-card">
+                    <div class="video-placeholder" onclick="openModal('video17')">
+                        <div class="play-icon"></div>
+                    </div>
+                    <div class="video-content">
+                        <h3>Available Support & Resources</h3>
+                        <div class="duration">9 minutes</div>
+                        <p>Overview of all support tools, resources, professional development opportunities, and the support team available to help you succeed.</p>
+                        <div class="tags">
+                            <span class="tag">Support</span>
+                            <span class="tag">Resources</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="video-card">
+                    <div class="video-placeholder" onclick="openModal('video18')">
+                        <div class="play-icon"></div>
+                    </div>
+                    <div class="video-content">
+                        <h3>Tracking Progress & Measuring Success</h3>
+                        <div class="duration">10 minutes</div>
+                        <p>Learn how to monitor progress, measure outcomes, track improvements, and demonstrate ROI to your stakeholders throughout the program.</p>
+                        <div class="tags">
+                            <span class="tag">Measurement</span>
+                            <span class="tag">Tracking</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Call to Action Section -->
+        <div class="cta-section">
+            <h2>Ready to Join the Cohort Program?</h2>
+            <div class="accent-line"></div>
+            <p>Take the next step toward improving indoor air quality and student health in your district. Start your application today!</p>
+            <button class="cta-button" onclick="scrollToContact()">Get Started Today</button>
+        </div>
+    </div>
+
+    <!-- Video Modal -->
+    <div id="videoModal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()">×</button>
+            <iframe id="videoPlayer" class="modal-video" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Cohort Program. Dedicated to improving indoor air quality and student health in schools.</p>
+    </footer>
+
+    <script>
+        // Video URLs - Replace these with your actual YouTube or Vimeo video URLs
+        const videoData = {
+            video1: 'https://www.youtube.com/embed/dQw4w9WgXcQ', // Replace with actual video
+            video2: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
+            video3: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
+            video4: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
+            video5: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
+            video6: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
+            video7: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
+            video8: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
+            video9: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
+            video10: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
+            video11: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
+            video12: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
+            video13: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
+            video14: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
+            video15: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
+            video16: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
+            video17: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
+            video18: 'https://www.youtube.com/embed/dQw4w9WgXcQ'
+        };
+
+        function openModal(videoId) {
+            const modal = document.getElementById('videoModal');
+            const player = document.getElementById('videoPlayer');
+            player.src = videoData[videoId];
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('videoModal');
+            const player = document.getElementById('videoPlayer');
+            modal.classList.remove('active');
+            player.src = '';
+            document.body.style.overflow = 'auto';
+        }
+
+        function scrollToContact() {
+            // You can customize this function to scroll to a contact form or navigate to an application page
+            alert('Redirect to application page or show contact form');
+        }
+
+        // Close modal when clicking outside the content
+        document.addEventListener('click', function(event) {
+            const modal = document.getElementById('videoModal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        });
+
+        // Close modal with Escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeModal();
+            }
+        });
+    </script>
+</body>
+</html>
